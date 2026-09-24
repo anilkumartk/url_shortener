@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.LocalDateTime;
-
+import java.util.Map;
+import java.util.Optional;
 @Service
 public class UrlShortenerService {
 
@@ -80,5 +81,14 @@ public class UrlShortenerService {
             sb.append(CHARACTERS.charAt(random.nextInt(CHARACTERS.length())));
         }
         return sb.toString();
+    }
+    public Optional<Map<String, Object>> getStats(String shortCode) {
+        return repository.findByShortCode(shortCode)
+                .map(mapping -> Map.of(
+                        "shortCode", mapping.getShortCode(),
+                        "originalUrl", mapping.getOriginalUrl(),
+                        "clickCount", mapping.getClickCount(),
+                        "createdAt", mapping.getCreatedAt()
+                ));
     }
 }

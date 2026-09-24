@@ -46,4 +46,11 @@ public class UrlShortenerController {
         headers.setLocation(URI.create(originalUrl));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
+    @GetMapping("/stats/{shortCode}")
+    public ResponseEntity<?> getStats(@PathVariable String shortCode) {
+        return service.getStats(shortCode)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Map.of("error", "Short URL not found")));
+    }
 }
