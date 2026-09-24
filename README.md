@@ -105,6 +105,3 @@ curl http://localhost:8080/stats/{shortCode}
 - Deployed live instance (Render/Railway)
 - Integration tests with Testcontainers
 
-## License
-
-MIT
