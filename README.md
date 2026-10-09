@@ -60,7 +60,7 @@ Spring Boot REST API
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/<anilkumartk>/url_shortener.git
+   git clone https://github.com/anilkumartk/url_shortener.git
    cd url_shortener
    ```
 
